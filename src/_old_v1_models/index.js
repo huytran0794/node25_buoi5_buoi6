@@ -8,7 +8,7 @@ const { Sequelize } = require("sequelize");
 //   options: { host: "localhost", port: 3307, dialect: "mysql" },
 // };
 
-const sequelize = new Sequelize("db_food", "root", "123456", {
+const sequelize = new Sequelize("db_test", "root", "123456", {
   host: "localhost",
   dialect: "mysql",
   port: 3307,

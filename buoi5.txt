@@ -1,4 +1,4 @@
-/**** 13/11/2022 ****/
+/****************************** 13/11/2022 ****/
 - Sequelize: mối quan hệ giữa các bảng (1-1, 1-n, n-n)
 - Thằng nào chứa khóa ngoại => Định nghĩa mối quan hệ bên thằng đó.
 
@@ -8,3 +8,23 @@ type_name
 
 https://onedrive.live.com/view.aspx?resid=AB6BCE7ABA252566%21479&id=documents&wd=target%28Nodejs.one%7CB72AE2D4-09A2-4701-9EAE-A6D9807C75A8%2F%29
 onenote:https://d.docs.live.net/ab6bce7aba252566/Documents/Huy's%20Notebook/Nodejs.one#section-id={B72AE2D4-09A2-4701-9EAE-A6D9807C75A8}&end
+
+
+
+/**** Giải thích về cấu trúc thư mục do sequlize init tự tạo ra ****/
+    - config => file config quản lý danh sách db
+    - migrations => dùng để migration và backup db
+    - seeder => tạo dummy data
+
+    - Lệnh cli để tạo ra 1 model trong code
+    sequelize-cli model:generate --name User --attributes user_id:string,full_name:string,email:string,passWord:string
+
+    - Lệnh tạo table trong database:
+    sequelize-cli db:migrate
+
+
+    - Lệnh tạo data trong seeder:
+    sequelize-cli db:seed:all
+    - Lệnh undo data trong seeder:
+    sequelize-cli db:seed:undo:all
+
