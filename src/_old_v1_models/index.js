@@ -1,5 +1,8 @@
 // sequelize
 const { Sequelize } = require("sequelize");
+const config = require("../config/index");
+let { db_name, db_user, db_pass, db_host, db_port, db_dialect } = config;
+1;
 
 // const sqlizedbOptions = {
 //   database: "db_food",
@@ -8,10 +11,17 @@ const { Sequelize } = require("sequelize");
 //   options: { host: "localhost", port: 3307, dialect: "mysql" },
 // };
 
-const sequelize = new Sequelize("db_test", "root", "123456", {
-  host: "localhost",
-  dialect: "mysql",
-  port: 3307,
+// const sequelize = new Sequelize("db_food", "root", "123456", {
+//   host: "localhost",
+//   dialect: "mysql",
+//   port: 3307,
+// });
+
+// Connect db using config from env file
+const sequelize = new Sequelize(db_name, db_user, db_pass, {
+  host: db_host,
+  port: db_port,
+  dialect: db_dialect,
 });
 
 try {

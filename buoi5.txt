@@ -28,3 +28,11 @@ onenote:https://d.docs.live.net/ab6bce7aba252566/Documents/Huy's%20Notebook/Node
     - Lệnh undo data trong seeder:
     sequelize-cli db:seed:undo:all
 
+/**** Lệnh chạy auto tự tạo model dựa vào db có sẵn ****/
+yarn add sequelize-auto
+yarn sequelize-auto -h localhost -d db_food -u root -x 123456 -p 3307 --dialect mysql -o ./src/models -l es6
+
+- File init.model => Lớp đối tượng chứa các đối tượng, bên trong chứa tất cả các mối quan hệ
+- BelongsToMany => Liên kết 2 bảng n-n không cần thông qua bảng phụ (thứ 3) => Coi getUserResLike, getRestaurantUserLike trong controller
+
+- Gợi ý bài tập : like => bỏ vào bảng like, unlike => bỏ ra khỏi bảng unlike, 8 api, bảng order => validate cột arr_sub_id phải là array trước khi nhập data vào

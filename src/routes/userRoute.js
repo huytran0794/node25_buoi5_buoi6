@@ -5,6 +5,9 @@ const {
   createUser,
   updateUser,
   getFood,
+  getLikeRes,
+  getUserResLike,
+  getRestaurantUserLike,
 } = require("../controller/userController");
 
 const express = require("express");
@@ -16,8 +19,6 @@ const userRoute = express.Router();
 userRoute.get("/getUser", getUser);
 userRoute.post("/createUser", createUser);
 userRoute.put("/updateUser/:user_id", updateUser);
-
-userRoute.get("/getFood", getFood);
 
 // export by default
 module.exports = userRoute;
