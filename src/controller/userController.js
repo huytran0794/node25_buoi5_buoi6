@@ -7,6 +7,7 @@ const initModels = require("../models/init-models");
 
 const model = initModels(sequelize);
 const { successCode, failCode, errorCode } = require("../config/response");
+const e = require("cors");
 
 let { food, food_type, like_res, order, rate_res, restaurant, sub_food, user } =
   model;
@@ -98,10 +99,62 @@ const updateUser = async (req, res) => {
 
 // d => delete data => destroy
 
+// jwt - signup
+const signUp = async (req, res) => {
+  const bcrypt = require("bcrypt");
+  try {
+    let { full_name, email, pass_word } = req.body;
+    // cai nay bat buoc phai co where
+    let passWordHash = bcrypt.hashSync(pass_word, 10);
+    let checkEmailObj = await user.findOne({
+      where: {
+        email,
+      },
+    });
+
+    if (checkEmailObj) {
+      failCode(res, email, "Email đã tồn tại");
+    } else {
+      let result = await user.create({
+        full_name,
+        email,
+        pass_word: passWordHash,
+      });
+      successCode(res, checkEmailObj, "Tạo user thành công");
+    }
+  } catch (error) {
+    errorCode(res, "Lỗi backend");
+  }
+};
+
+//LOGIN
+const login = async (req, res) => {
+  try {
+    let { email, pass_word } = req.body;
+    const checkEmailLogin = await user.findOne({ where: { email } });
+
+    if (checkEmailLogin) {
+      if (checkEmailLogin.pass_word == pass_word) {
+        successCode(res, checkEmailLogin, "Login thành công");
+      } else {
+        failCode(res, "Password không đúng");
+      }
+    } else {
+      failCode(res, "Email không đúng");
+    }
+  } catch (error) {
+    errorCode(res, "Lỗi backend");
+  }
+};
+
 // common js to run
 
 module.exports = {
   getUser,
   createUser,
   updateUser,
+
+  //SIGNUP user
+  signUp,
+  login,
 };
