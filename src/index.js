@@ -4,6 +4,11 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
+
+// express.static(".") => cấu hình đường dẫn để có thể truy cập tài nguyên
+// cai nay dinh nghia nhu la global route
+app.use(express.static("."));
+
 const cors = require("cors");
 app.use(cors());
 
